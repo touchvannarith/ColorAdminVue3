@@ -1,11 +1,17 @@
 <script setup lang="ts">
-import { onMounted } from 'vue';
+import { onMounted, ref, watch } from 'vue';
 import { useAppOptionStore } from '@/stores/app-option';
+import { useLanguageStore } from '@/stores/language-store';
 import { RouterLink } from 'vue-router';
 import { slideToggle } from '@/composables/slideToggle.js';
 import AppHeaderMegaMenu from '@/components/app/HeaderMegaMenu.vue';
+import type { ILanguage } from '@/types/language';
+import { useI18n } from 'vue-i18n';
 
 const appOption = useAppOptionStore();
+const languageStore = useLanguageStore();
+const { locale } = useI18n();
+
 const notificationData = [{
 	icon: 'fa fa-bug media-object bg-gray-500',
 	title: 'Server Error Reports <i class="fa fa-exclamation-circle text-danger"></i>',
@@ -32,6 +38,12 @@ const notificationData = [{
 	title: 'New Email From John',
 	time: '2 hour ago'
 }];
+
+// Watch for language changes
+watch(() => languageStore.currentLanguage, (newLang) => {
+	locale.value = newLang.code;
+	document.documentElement.lang = newLang.code;
+}, { immediate: true });
 
 function toggleAppSidebarCollapsed() {
 	if (appOption.appSidebarCollapsed) {
@@ -78,6 +90,10 @@ function checkForm(event) {
 	event.preventDefault();
 	this.$router.push({ path: '/extra/search' })
 };
+
+function handleLanguageChange(lang: ILanguage) {
+	languageStore.setLanguage(lang);
+}
 
 onMounted(() => {
 	handleWindowResize();
@@ -166,16 +182,18 @@ onMounted(() => {
 			</div>
 			<div class="navbar-item dropdown" v-if="appOption.appHeaderLanguageBar">
 				<a href="#" class="navbar-link dropdown-toggle" data-bs-toggle="dropdown">
-					<span class="fi fi-us" title="us"></span>
-					<span class="d-none d-sm-inline ms-1">EN</span> <b class="caret"></b>
+					<span :class="'fi fi-' + languageStore.currentLanguage.flag" :title="languageStore.currentLanguage.flag"></span>
+					<span class="d-none d-sm-inline ms-1">{{ languageStore.currentLanguage.code.toUpperCase() }}</span> <b class="caret"></b>
 				</a>
 				<div class="dropdown-menu dropdown-menu-end">
-					<a href="javascript:;" class="dropdown-item"><span class="fi fi-us me-2" title="us"></span> English</a>
-					<a href="javascript:;" class="dropdown-item"><span class="fi fi-cn me-2" title="cn"></span> Chinese</a>
-					<a href="javascript:;" class="dropdown-item"><span class="fi fi-jp me-2" title="jp"></span> Japanese</a>
-					<a href="javascript:;" class="dropdown-item"><span class="fi fi-be me-2" title="be"></span> Belgium</a>
-					<div class="dropdown-divider"></div>
-					<a href="javascript:;" class="dropdown-item text-center">more options</a>
+					<a href="javascript:;" 
+						v-for="lang in languageStore.availableLanguages" 
+						:key="lang.code"
+						class="dropdown-item"
+						@click="handleLanguageChange(lang)"
+						:class="{ 'active': lang.code === languageStore.currentLanguage.code }">
+						<span :class="'fi fi-' + lang.flag + ' me-2'" :title="lang.flag"></span> {{ lang.name }}
+					</a>
 				</div>
 			</div>
 			<div class="navbar-item navbar-user dropdown">

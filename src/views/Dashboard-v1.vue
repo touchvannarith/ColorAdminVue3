@@ -212,12 +212,12 @@ export default {
 	<div>
 		<!-- BEGIN breadcrumb -->
 		<ol class="breadcrumb float-xl-end">
-			<li class="breadcrumb-item"><a href="javascript:;">Home</a></li>
-			<li class="breadcrumb-item active">Dashboard</li>
+			<li class="breadcrumb-item"><a href="javascript:;">{{ $t('navigation.home') }}</a></li>
+			<li class="breadcrumb-item active">{{ $t('navigation.dashboard') }}</li>
 		</ol>
 		<!-- END breadcrumb -->
 		<!-- BEGIN page-header -->
-		<h1 class="page-header">Dashboard <small>header small text goes here...</small></h1>
+		<h1 class="page-header">{{ $t('dashboard.title') }} <small>{{ $t('dashboard.header') }}</small></h1>
 		<!-- END page-header -->
 		
 		<!-- BEGIN row -->
@@ -227,11 +227,11 @@ export default {
 				<div class="widget widget-stats bg-blue">
 					<div class="stats-icon"><i class="fa fa-desktop"></i></div>
 					<div class="stats-info">
-						<h4>TOTAL VISITORS</h4>
+						<h4>{{ $t('dashboard.stats.totalVisitors') }}</h4>
 						<p>3,291,922</p>	
 					</div>
 					<div class="stats-link">
-						<a href="javascript:;">View Detail <i class="fa fa-arrow-alt-circle-right"></i></a>
+						<a href="javascript:;">{{ $t('dashboard.stats.viewDetail') }} <i class="fa fa-arrow-alt-circle-right"></i></a>
 					</div>
 				</div>
 			</div>
@@ -241,11 +241,11 @@ export default {
 				<div class="widget widget-stats bg-info">
 					<div class="stats-icon"><i class="fa fa-link"></i></div>
 					<div class="stats-info">
-						<h4>BOUNCE RATE</h4>
+						<h4>{{ $t('dashboard.stats.bounceRate') }}</h4>
 						<p>20.44%</p>	
 					</div>
 					<div class="stats-link">
-						<a href="javascript:;">View Detail <i class="fa fa-arrow-alt-circle-right"></i></a>
+						<a href="javascript:;">{{ $t('dashboard.stats.viewDetail') }} <i class="fa fa-arrow-alt-circle-right"></i></a>
 					</div>
 				</div>
 			</div>
@@ -255,11 +255,11 @@ export default {
 				<div class="widget widget-stats bg-orange">
 					<div class="stats-icon"><i class="fa fa-users"></i></div>
 					<div class="stats-info">
-						<h4>UNIQUE VISITORS</h4>
+						<h4>{{ $t('dashboard.stats.uniqueVisitors') }}</h4>
 						<p>1,291,922</p>	
 					</div>
 					<div class="stats-link">
-						<a href="javascript:;">View Detail <i class="fa fa-arrow-alt-circle-right"></i></a>
+						<a href="javascript:;">{{ $t('dashboard.stats.viewDetail') }} <i class="fa fa-arrow-alt-circle-right"></i></a>
 					</div>
 				</div>
 			</div>
@@ -269,11 +269,11 @@ export default {
 				<div class="widget widget-stats bg-red">
 					<div class="stats-icon"><i class="fa fa-clock"></i></div>
 					<div class="stats-info">
-						<h4>AVG TIME ON SITE</h4>
+						<h4>{{ $t('dashboard.stats.avgTimeOnSite') }}</h4>
 						<p>00:12:23</p>	
 					</div>
 					<div class="stats-link">
-						<a href="javascript:;">View Detail <i class="fa fa-arrow-alt-circle-right"></i></a>
+						<a href="javascript:;">{{ $t('dashboard.stats.viewDetail') }} <i class="fa fa-arrow-alt-circle-right"></i></a>
 					</div>
 				</div>
 			</div>
@@ -288,7 +288,7 @@ export default {
 				<!-- BEGIN panel -->
 				<panel>
 					<panel-header>
-						<panel-title>Website Analytics (Last 7 Days)</panel-title>
+						<panel-title>{{ $t('dashboard.analytics.title') }}</panel-title>
 						<panel-toolbar />
 					</panel-header>
 					<panel-body>
@@ -299,9 +299,9 @@ export default {
 				
 				<!-- BEGIN tabs -->
 				<ul class="nav nav-tabs nav-tabs-inverse nav-justified" data-sortable-id="index-2">
-					<li class="nav-item"><a href="#latest-post" data-bs-toggle="tab" class="nav-link active"><i class="fa fa-camera fa-lg me-5px"></i> <span class="d-none d-md-inline">Latest Post</span></a></li>
-					<li class="nav-item"><a href="#purchase" data-bs-toggle="tab" class="nav-link"><i class="fa fa-archive fa-lg me-5px"></i> <span class="d-none d-md-inline">Purchase</span></a></li>
-					<li class="nav-item"><a href="#email" data-bs-toggle="tab" class="nav-link"><i class="fa fa-envelope fa-lg me-5px"></i> <span class="d-none d-md-inline">Email</span></a></li>
+					<li class="nav-item"><a href="#latest-post" data-bs-toggle="tab" class="nav-link active"><i class="fa fa-camera fa-lg me-5px"></i> <span class="d-none d-md-inline">{{ $t('dashboard.tabs.latestPost') }}</span></a></li>
+					<li class="nav-item"><a href="#purchase" data-bs-toggle="tab" class="nav-link"><i class="fa fa-archive fa-lg me-5px"></i> <span class="d-none d-md-inline">{{ $t('dashboard.tabs.purchase') }}</span></a></li>
+					<li class="nav-item"><a href="#email" data-bs-toggle="tab" class="nav-link"><i class="fa fa-envelope fa-lg me-5px"></i> <span class="d-none d-md-inline">{{ $t('dashboard.tabs.email') }}</span></a></li>
 				</ul>
 				<div class="tab-content panel rounded-0 rounded-bottom mb-20px" data-sortable-id="index-3">
 					<div class="tab-pane fade active show" id="latest-post">
@@ -490,7 +490,7 @@ export default {
 				<!-- BEGIN panel -->
 				<panel>
 					<panel-header>
-						<panel-title>Quick Post</panel-title>
+						<panel-title>{{ $t('dashboard.quickPost.title') }}</panel-title>
 						<panel-toolbar />
 					</panel-header>
 					<div class="panel-toolbar">
@@ -507,10 +507,10 @@ export default {
 						</div>
 					</div>
 					<hr class="m-0" />
-					<textarea class="form-control rounded-0 border-0 shadow-none bg-light p-3" rows="14">Enter some comment.</textarea>
+					<textarea class="form-control rounded-0 border-0 shadow-none bg-light p-3" rows="14">{{ $t('dashboard.quickPost.placeholder') }}</textarea>
 					<panel-footer class="text-end">
-						<a href="javascript:;" class="btn btn-white btn-sm">Cancel</a>
-						<a href="javascript:;" class="btn btn-primary btn-sm ms-5px">Action</a>
+						<a href="javascript:;" class="btn btn-white btn-sm">{{ $t('dashboard.quickPost.cancel') }}</a>
+						<a href="javascript:;" class="btn btn-primary btn-sm ms-5px">{{ $t('dashboard.quickPost.action') }}</a>
 					</panel-footer>
 				</panel>
 				<!-- END panel -->
@@ -518,7 +518,7 @@ export default {
 				<!-- BEGIN panel -->
 				<panel>
 					<panel-header>
-						<panel-title>Message</panel-title>
+						<panel-title>{{ $t('dashboard.message.title') }}</panel-title>
 						<panel-toolbar />
 					</panel-header>
 					<perfect-scrollbar class="h-300px p-3">
@@ -565,7 +565,7 @@ export default {
 					<panel-footer>
 						<form>
 							<div class="input-group">
-								<input type="text" class="form-control bg-light" placeholder="Enter message" />
+								<input type="text" class="form-control bg-light" :placeholder="$t('dashboard.message.placeholder')" />
 								<button class="btn btn-primary" type="button"><i class="fa fa-pencil-alt"></i></button>
 							</div>
 						</form>
@@ -579,21 +579,21 @@ export default {
 				<!-- BEGIN panel -->
 				<panel>
 					<panel-header>
-						<panel-title>Analytics Details</panel-title>
+						<panel-title>{{ $t('dashboard.analyticsDetails.title') }}</panel-title>
 						<panel-toolbar />
 					</panel-header>
 					<div class="table-responsive mb-0">
 						<table class="table table-panel align-middle mb-0">
 							<thead>
 								<tr>	
-									<th>Source</th>
-									<th>Total</th>
-									<th>Trend</th>
+									<th>{{ $t('dashboard.analyticsDetails.source') }}</th>
+									<th>{{ $t('dashboard.analyticsDetails.total') }}</th>
+									<th>{{ $t('dashboard.analyticsDetails.trend') }}</th>
 								</tr>
 							</thead>
 							<tbody>
 								<tr>
-									<td nowrap><label class="badge bg-danger">Unique Visitor</label></td>
+									<td nowrap><label class="badge bg-danger">{{ $t('dashboard.analyticsDetails.uniqueVisitor') }}</label></td>
 									<td>13,203 <span class="text-success"><i class="fa fa-arrow-up"></i></span></td>
 									<td>
 										<div class="w-100px my-n1">
@@ -602,7 +602,7 @@ export default {
 									</td>
 								</tr>
 								<tr>
-									<td nowrap><label class="badge bg-warning">Bounce Rate</label></td>
+									<td nowrap><label class="badge bg-warning">{{ $t('dashboard.analyticsDetails.bounceRate') }}</label></td>
 									<td>28.2%</td>
 									<td>
 										<div class="w-100px my-n1">
@@ -611,7 +611,7 @@ export default {
 									</td>
 								</tr>
 								<tr>
-									<td nowrap><label class="badge bg-success">Total Page Views</label></td>
+									<td nowrap><label class="badge bg-success">{{ $t('dashboard.analyticsDetails.totalPageViews') }}</label></td>
 									<td>1,230,030</td>
 									<td>
 										<div class="w-100px my-n1">
@@ -620,7 +620,7 @@ export default {
 									</td>
 								</tr>
 								<tr>
-									<td nowrap><label class="badge bg-blue">Avg Time On Site</label></td>
+									<td nowrap><label class="badge bg-blue">{{ $t('dashboard.analyticsDetails.avgTimeOnSite') }}</label></td>
 									<td>00:03:45</td>
 									<td>
 										<div class="w-100px my-n1">
@@ -629,7 +629,7 @@ export default {
 									</td>
 								</tr>
 								<tr>
-									<td nowrap><label class="badge bg-default text-gray-900">% New Visits</label></td>
+									<td nowrap><label class="badge bg-default text-gray-900">{{ $t('dashboard.analyticsDetails.newVisits') }}</label></td>
 									<td>40.5%</td>
 									<td>
 										<div class="w-100px my-n1">
@@ -638,7 +638,7 @@ export default {
 									</td>
 								</tr>
 								<tr>
-									<td nowrap><label class="badge bg-inverse">Return Visitors</label></td>
+									<td nowrap><label class="badge bg-inverse">{{ $t('dashboard.analyticsDetails.returnVisitors') }}</label></td>
 									<td>73.4%</td>
 									<td>
 										<div class="w-100px my-n1">
@@ -655,7 +655,7 @@ export default {
 				<!-- BEGIN panel -->
 				<panel>
 					<panel-header>
-						<panel-title>Visitors User Agent</panel-title>
+						<panel-title>{{ $t('dashboard.visitorsUserAgent.title') }}</panel-title>
 						<panel-toolbar />
 					</panel-header>
 					<panel-body>
@@ -667,7 +667,7 @@ export default {
 				<!-- BEGIN panel -->
 				<panel>
 					<panel-header>
-						<panel-title>Todo List</panel-title>
+						<panel-title>{{ $t('dashboard.todoList.title') }}</panel-title>
 						<panel-toolbar />
 					</panel-header>
 					<div class="todolist">
@@ -734,7 +734,7 @@ export default {
 				<!-- BEGIN panel -->
 				<panel>
 					<panel-header>
-						<panel-title>World Visitors</panel-title>
+						<panel-title>{{ $t('dashboard.worldVisitors.title') }}</panel-title>
 						<panel-toolbar />
 					</panel-header>
 					<div id="map-container" class="bg-dark h-300px"></div>
@@ -744,7 +744,7 @@ export default {
 				<!-- BEGIN panel -->
 				<panel>
 					<panel-header>
-						<panel-title>Calendar</panel-title>
+						<panel-title>{{ $t('dashboard.calendar.title') }}</panel-title>
 						<panel-toolbar />
 					</panel-header>
 					<v-date-picker class="w-100 border-0 bg-none" v-model="date" />

@@ -1,5 +1,4 @@
 <script>
-import 'flag-icons/css/flag-icons.min.css';
 import { useAppOptionStore } from '@/stores/app-option';
 import highlightjs from '@/components/plugins/Highlightjs.vue';
 import axios from 'axios';
@@ -8,7 +7,7 @@ const appOption = useAppOptionStore();
 
 export default {
 	data() {
-		appOption.appHeaderLanguageBar = true;
+		//appOption.appHeaderLanguageBar = true;
 
 		return {
 			code1: ''
@@ -23,7 +22,7 @@ export default {
 		});
 	},
 	beforeRouteLeave (to, from, next) {
-		appOption.appHeaderLanguageBar = false;
+		//appOption.appHeaderLanguageBar = false;
 		next();
 	}
 }

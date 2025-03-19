@@ -9,7 +9,7 @@ export const useAppOptionStore = defineStore("appOption", () => {
 		appHeaderFixed: true,
 		appHeaderInverse: false,
 		appHeaderSearchToggled: false,
-		appHeaderLanguageBar: false,
+		appHeaderLanguageBar: true,
 		appHeaderMegaMenu: false,
 		
 		appSidebarTwo: false,
@@ -38,4 +38,6 @@ export const useAppOptionStore = defineStore("appOption", () => {
 		
 		appThemePanelToggled: false
 	}
+}, {
+    persist: true
 });

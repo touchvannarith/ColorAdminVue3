@@ -151,4 +151,6 @@ export const useAppSidebarMenuStore = defineStore("appSidebarMenu", () => {
 			{ url: '/menu/menu-1-3', title: 'Menu 1.3' },
 		]
 	}]
+}, {
+    persist: true
 });

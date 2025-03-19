@@ -75,4 +75,6 @@ export function generateVariables() {
 
 export const useAppVariableStore = defineStore("appVariable", () => {
 	return generateVariables();
+}, {
+    persist: true
 });
