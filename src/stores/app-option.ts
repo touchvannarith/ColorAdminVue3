@@ -36,7 +36,13 @@ export const useAppOptionStore = defineStore("appOption", () => {
 		appFooter: false,
 		appFooterFixed: false,
 		
-		appThemePanelToggled: false
+		appThemePanelToggled: false,
+
+		appSidebarGrid: false,
+		appSidebarToggled: false,
+		appBoxedLayout: false,
+		appGradientEnabled: false,
+		appMegaMenu: false,
 	}
 }, {
     persist: true

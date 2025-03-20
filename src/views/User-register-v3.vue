@@ -83,7 +83,7 @@ export default {
 						<button type="submit" class="btn btn-theme d-block w-100 btn-lg h-45px fs-13px">Sign Up</button>
 					</div>
 					<div class="mb-4 pb-5">
-						Already a member? Click <router-link to="/user/login-v3">here</router-link> to login.
+						Already a member? Click <router-link to="/login">here</router-link> to login.
 					</div>
 					<hr class="bg-gray-600 opacity-2" />
 					<p class="text-center text-gray-600">

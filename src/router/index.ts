@@ -1,13 +1,14 @@
+import { useAuthStore } from "@/stores/auth-store";
 import { createRouter, createWebHistory } from "vue-router";
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
   routes: [
-    { path: '/', redirect: '/dashboard/v3' },
+    { path: '/', redirect: '/dashboard/v3', meta: { requiresAuth: true } },
 		{ path: '/:pathMatch(.*)*', component: () => import('../views/Error.vue') },
-    { path: '/dashboard/v1', component: () => import('../views/Dashboard-v1.vue') },
-    { path: '/dashboard/v2', component: () => import('../views/Dashboard-v2.vue') },
-    { path: '/dashboard/v3', component: () => import('../views/Dashboard-v3.vue') },
+    { path: '/dashboard/v1', component: () => import('../views/Dashboard-v1.vue'), meta: { requiresAuth: true } },
+    { path: '/dashboard/v2', component: () => import('../views/Dashboard-v2.vue'), meta: { requiresAuth: true } },
+    { path: '/dashboard/v3', component: () => import('../views/Dashboard-v3.vue'), meta: { requiresAuth: true } },
     { path: '/ai/chat', component: () => import('../views/AI-chat.vue') },
     { path: '/ai/image-generator', component: () => import('../views/AI-image-generator.vue') },
     { path: '/email/inbox', component: () => import('../views/Email-inbox.vue') },
@@ -80,6 +81,7 @@ const router = createRouter({
     { path: '/extra/messenger-page', component: () => import('../views/Extra-messenger-page.vue') },
     { path: '/extra/data-management', component: () => import('../views/Extra-data-management.vue') },
     { path: '/extra/settings-page', component: () => import('../views/Extra-settings-page.vue') },
+    { path: '/login', component: () => import('../views/Login.vue') },
     { path: '/user/login-v1', component: () => import('../views/User-login-v1.vue') },
     { path: '/user/login-v2', component: () => import('../views/User-login-v2.vue') },
     { path: '/user/login-v3', component: () => import('../views/User-login-v3.vue') },
@@ -87,5 +89,17 @@ const router = createRouter({
     { path: '/helper/css', component: () => import('../views/Helper-css.vue') }
   ],
 });
+
+// Navigation guard for authentication
+router.beforeEach((to, from, next) => {
+  const authStore = useAuthStore();
+  if (to.meta.requiresAuth && !authStore.isAuthenticated) {
+    next('/login') // Redirect unauthorized users
+  } else if (to.path === '/login' && authStore.isAuthenticated) {
+    next('/dashboard/v1') // Redirect logged-in users away from login page
+  } else {
+    next()
+  }
+})
 
 export default router;

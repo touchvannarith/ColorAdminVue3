@@ -1,16 +1,19 @@
 <script setup lang="ts">
-import { onMounted, ref, watch } from 'vue';
+import { onMounted, watch } from 'vue';
 import { useAppOptionStore } from '@/stores/app-option';
 import { useLanguageStore } from '@/stores/language-store';
-import { RouterLink } from 'vue-router';
+import { RouterLink, useRouter } from 'vue-router';
 import { slideToggle } from '@/composables/slideToggle.js';
 import AppHeaderMegaMenu from '@/components/app/HeaderMegaMenu.vue';
 import type { ILanguage } from '@/types/language';
 import { useI18n } from 'vue-i18n';
+import { useAuthStore } from '@/stores/auth-store';
 
 const appOption = useAppOptionStore();
 const languageStore = useLanguageStore();
 const { locale } = useI18n();
+const authStore = useAuthStore();
+const router = useRouter();
 
 const notificationData = [{
 	icon: 'fa fa-bug media-object bg-gray-500',
@@ -66,13 +69,13 @@ function toggleAppSidebarEndMobileToggled() {
 	appOption.appSidebarEndMobileToggled = !appOption.appSidebarEndMobileToggled;
 };
 
-function toggleAppHeaderSearch(event) {
+function toggleAppHeaderSearch(event: Event) {
 	event.preventDefault();
 	
 	appOption.appHeaderSearchToggled = !appOption.appHeaderSearchToggled;
 };
 
-function toggleAppTopMenuMobileToggled(event) {
+function toggleAppTopMenuMobileToggled(event: Event) {
 	event.preventDefault();
 	slideToggle(document.querySelector('.app-top-menu'));
 };
@@ -86,13 +89,18 @@ function handleWindowResize() {
 	});
 };
 
-function checkForm(event) {
+function checkForm(event: Event) {
 	event.preventDefault();
-	this.$router.push({ path: '/extra/search' })
+	router.push({ path: '/extra/search' })
 };
 
 function handleLanguageChange(lang: ILanguage) {
 	languageStore.setLanguage(lang);
+}
+
+function handleLogout() {
+	authStore.logout();
+	router.push('/login');
 }
 
 onMounted(() => {
@@ -129,7 +137,7 @@ onMounted(() => {
 				<span class="icon-bar"></span>
 				<span class="icon-bar"></span>
 			</button>
-			<button type="button" class="navbar-mobile-toggler" v-if="!appOption.appSidebarHide" v-on:click="toggleAppSidebarMobileToggled($event)">
+			<button type="button" class="navbar-mobile-toggler" v-if="!appOption.appSidebarHide" v-on:click="toggleAppSidebarMobileToggled()">
 				<span class="icon-bar"></span>
 				<span class="icon-bar"></span>
 				<span class="icon-bar"></span>
@@ -200,7 +208,7 @@ onMounted(() => {
 				<a href="#" class="navbar-link dropdown-toggle d-flex align-items-center" data-bs-toggle="dropdown">
 					<img src="/assets/img/user/user-13.jpg" alt="" /> 
 					<span>
-						<span class="d-none d-md-inline fw-bold">Adam Schwartz</span>
+						<span class="d-none d-md-inline fw-bold">{{ authStore.user?.name }}</span>
 						<b class="caret"></b>
 					</span>
 				</a>
@@ -213,7 +221,7 @@ onMounted(() => {
 					<router-link to="/calendar" class="dropdown-item">Calendar</router-link>
 					<router-link to="/extra/settings-page" class="dropdown-item">Settings</router-link>
 					<div class="dropdown-divider"></div>
-					<router-link to="/user/login-v1" class="dropdown-item">Log Out</router-link>
+					<router-link to="/login" class="dropdown-item" @click="handleLogout"> {{ authStore.isAuthenticated ? 'Log Out' : 'Log In' }}</router-link>
 				</div>
 			</div>
 			<div class="navbar-divider d-none d-md-block" v-if="appOption.appSidebarTwo"></div>
